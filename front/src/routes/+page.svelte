@@ -2,7 +2,6 @@
     import { onMount } from "svelte";
 
     let files: FileList | null;
-    let text = "tyler";
     let future: Promise<Response> | null;
 
     let file_data: string | undefined;
@@ -10,9 +9,7 @@
     const readFile = (file: File): Promise<string> => {
         return new Promise((resolve) => {
             const reader = new FileReader();
-
             reader.onload = () => resolve(reader.result as string);
-
             reader.readAsDataURL(file);
         });
     };
@@ -49,8 +46,6 @@
         alert(data);
     };
 
-    let tyler: string | undefined;
-
     onMount(async () => {
         let res = await fetch("http://localhost:1971/tyler");
         console.log(res.status);
@@ -66,7 +61,3 @@
 
     <button type="submit">Submit</button>
 </form>
-
-{#if tyler}
-    {tyler}
-{/if}
